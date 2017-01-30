@@ -16,6 +16,7 @@ var slapp = Slapp({
 })
 
 var startTeaState = false
+var teaUsers = []
 
 var HELP_TEXT = `
 I will respond to the following messages:
@@ -41,7 +42,9 @@ slapp.message('tea',['ambient', 'mention'], (msg) => {
     startTeaState = false
   } else {
     msg.say('<!channel> time for tea!!! - who wants in?')
+    msg.say(msg.body.user.user_name)
     startTeaState = true
+    //teaUsers
   }
   })
 
