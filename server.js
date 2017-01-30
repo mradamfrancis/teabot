@@ -42,7 +42,7 @@ slapp.message('tea',['ambient', 'mention'], (msg) => {
     startTeaState = false
   } else {
     msg.say('<!channel> time for tea!!! - who wants in?')
-    msg.say(msg.body.event.user)
+    msg.say(msg.body.event.user.user_name)
     startTeaState = true
     //teaUsers
   }
