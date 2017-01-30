@@ -15,6 +15,7 @@ var slapp = Slapp({
   context: Context()
 })
 
+var startTeaState = false
 
 var HELP_TEXT = `
 I will respond to the following messages:
@@ -35,7 +36,7 @@ slapp.message('help', ['mention', 'direct_message', 'ambient'], (msg) => {
 })
 
 slapp.message('tea',['ambient', 'mention'], (msg) => {
-  msg.say('<!channel> time for tea!!! - who wants in?')
+  msg.say('<!channel> time for tea!!! - who wants in? ' + startTeatState)
   })
 
 /*
