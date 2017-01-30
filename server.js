@@ -34,7 +34,7 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
   msg.say(HELP_TEXT)
 })
 
-slapp.message('^(tea|tea\?)$',['ambient'], (msg, text) => {
+slapp.message('^(tea|tea\?)$',['ambient'], (msg) => {
     // text = 'play'
   msg.say('time for tea!!!')
   })
