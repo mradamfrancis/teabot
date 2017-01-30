@@ -36,7 +36,11 @@ slapp.message('help', ['mention', 'direct_message', 'ambient'], (msg) => {
 })
 
 slapp.message('tea',['ambient', 'mention'], (msg) => {
-  msg.say('<!channel> time for tea!!! - who wants in? ' + startTeatState)
+  if (startTeaState) {
+  msg.say('<!channel> time for tea!!! - who wants in?')
+  } else {
+    msg.say('no')
+  }
   })
 
 /*
