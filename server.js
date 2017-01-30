@@ -39,6 +39,7 @@ slapp.message('^(tea|tea\?)$',['ambient'], (msg) => {
   msg.say('time for tea!!!')
   })
 
+/*
 // "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
 slapp
   .message('^(hi|hello|hey)$', ['direct_mention', 'direct_message'], (msg, text) => {
@@ -82,8 +83,8 @@ slapp
       .say('Thanks for sharing.')
       .say(`Here's what you've told me so far: \`\`\`${JSON.stringify(state)}\`\`\``)
     // At this point, since we don't route anywhere, the "conversation" is over
-  })
-
+  })*/
+/*
 // Can use a regex as well
 slapp.message(/^(thanks|thank you)/i, ['mention', 'direct_message'], (msg) => {
   // You can provide a list of responses, and a random one will be chosen
@@ -94,7 +95,7 @@ slapp.message(/^(thanks|thank you)/i, ['mention', 'direct_message'], (msg) => {
     ':+1: Of course',
     'Anytime :sun_with_face: :full_moon_with_face:'
   ])
-})
+})*/
 
 // demonstrate returning an attachment...
 slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
@@ -109,14 +110,14 @@ slapp.message('attachment', ['mention', 'direct_message'], (msg) => {
     }]
   })
 })
-
+/*
 // Catch-all for any other responses not handled above
 slapp.message('.*', ['direct_mention', 'direct_message'], (msg) => {
   // respond only 40% of the time
   if (Math.random() < 0.4) {
     msg.say([':wave:', ':pray:', ':raised_hands:'])
   }
-})
+})*/
 
 // attach Slapp to express server
 var server = slapp.attachToExpress(express())
