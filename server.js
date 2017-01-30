@@ -37,7 +37,7 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 slapp.message('^(tea|tea\?)$',['ambient'], (msg, text) => {
     // text = 'play'
   msg.say('time for tea!!!')
-  }
+  })
 
 // "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
 slapp
