@@ -61,7 +61,12 @@ slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
     setTimeout(() => {
     msg.say('30 seconds left - any one else?')
       setTimeout(() => {
-    msg.say(teaUsers.length + 'teas to make ')
+        startTeaState = false
+        if (teaUsers.length > 1) {
+    msg.say(teaUsers.length + ' teas to make ')
+        } else {
+          msg.say(teaUsers.length + ' tea to make!')
+        }
   }, 30000)
   }, 30000)
     //teaUsers
