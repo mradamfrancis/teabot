@@ -68,7 +68,7 @@ slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
           var listOfDrinkers = ''
           teaUsers.forEach(function(element) {
             if (element == teaMakerId) {
-              listOfDrinkers = listOfDrinkers + '<' + element + '> '
+              listOfDrinkers = listOfDrinkers + '<@' + element + '> '
             }
           })
           msg.say(teaMaker + ' you\'re making tea for ' + teaUsers.length + ' people!: ' + listOfDrinkers)
