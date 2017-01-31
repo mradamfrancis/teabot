@@ -62,19 +62,25 @@ slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
     msg.say('30 seconds left - any one else?')
       setTimeout(() => {
         startTeaState = false
-        if (teaUsers.length > 1) {
+        if (teaUsers.length != 0) {
           var teaMakerId = teaUsers[Math.floor(Math.random()*teaUsers.length)]
           var teaMaker = '<@' + teaMakerId + '>'
-          var listOfDrinkers = ''
-          teaUsers.forEach(function(element) {
-            if (element == teaMakerId) {
-              listOfDrinkers = listOfDrinkers + '<@' + element + '> '
+          if (teaUsers.length > 1) {
+            var listOfDrinkers = ''
+            teaUsers.forEach(function(element) {
+              if (element != teaMakerId) {
+                listOfDrinkers = listOfDrinkers + '<@' + element + '> '
+              }
+            })
+            if (listOfDrinkers == '') {
+              // making it for themselves
+              msg.say(teaMaker + ' you\'re making tea for yourself')
+            } else {
+              msg.say(teaMaker + ' you\'re making tea for ' + teaUsers.length + ' people: ' + listOfDrinkers)
             }
-          })
-          msg.say(teaMaker + ' you\'re making tea for ' + teaUsers.length + ' people!: ' + listOfDrinkers)
-        } else {
-          // var item = items[Math.floor(Math.random()*items.length)];
-          msg.say(teaUsers.length + ' tea to make ')
+          } else {
+            msg.say(teaMaker + ' you\'re making tea for yourself')
+          }
         }
   }, 30000)
   }, 30000)
