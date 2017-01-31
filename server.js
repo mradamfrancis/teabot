@@ -42,10 +42,10 @@ slapp.message('tea',['ambient', 'mention'], (msg) => {
     startTeaState = false
   } else {
     var user = '<@' + msg.body.event.user + '>'
-    msg.say('<!here> time for tea!!! - who wants in?')
+    msg.say('<!here> time for tea!!! - who wants in? ' + user + ' is')
     //msg.say('<!user> is in')
     //msg.say('<@user> is in 2')
-    msg.say(user + ' is in 3')
+    //msg.say(user + ' is i')
     startTeaState = true
     //teaUsers
   }
