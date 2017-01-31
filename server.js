@@ -65,7 +65,9 @@ slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
         if (teaUsers.length > 1) {
     msg.say(teaUsers.length + ' teas to make ')
         } else {
-          msg.say(teaUsers.length + ' tea to make!')
+          // var item = items[Math.floor(Math.random()*items.length)];
+          var teaMaker = '<@' + teaUsers[Math.floor(Math.random()*teaUsers.length)] + '>'
+          msg.say(teaMaker + ' you\'re making tea for ' + teaUsers.length + ' people!')
         }
   }, 30000)
   }, 30000)
