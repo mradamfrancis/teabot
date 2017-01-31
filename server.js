@@ -63,11 +63,12 @@ slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
       setTimeout(() => {
         startTeaState = false
         if (teaUsers.length > 1) {
-    msg.say(teaUsers.length + ' teas to make ')
-        } else {
-          // var item = items[Math.floor(Math.random()*items.length)];
+    
           var teaMaker = '<@' + teaUsers[Math.floor(Math.random()*teaUsers.length)] + '>'
           msg.say(teaMaker + ' you\'re making tea for ' + teaUsers.length + ' people!')
+        } else {
+          // var item = items[Math.floor(Math.random()*items.length)];
+          msg.say(teaUsers.length + ' tea to make ')
         }
   }, 30000)
   }, 30000)
