@@ -50,6 +50,9 @@ slapp.message('tea',['ambient', 'mention'], (msg) => {
     
     setTimeout(() => {
     msg.say('30 seconds left - any one else?')
+      setTimeout(() => {
+    msg.say('time is up :)')
+  }, 30000)
   }, 30000)
     //teaUsers
   }
