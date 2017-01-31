@@ -36,7 +36,7 @@ slapp.message('help', ['mention', 'direct_message', 'ambient'], (msg) => {
   msg.say(HELP_TEXT)
 })
 
-slapp.message('tea',['ambient', 'mention'], (msg) => {
+slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     msg.say('already started')
     startTeaState = false
