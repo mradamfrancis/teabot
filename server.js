@@ -36,11 +36,21 @@ slapp.message('help', ['mention', 'direct_message', 'ambient'], (msg) => {
   msg.say(HELP_TEXT)
 })
 
+slapp.message('^(me|yes|y)$',['ambient', 'mention'], (msg) => {
+  if (startTeaState) {
+    teaUsers.push(msg.body.event.user)
+    var user = '<@' + msg.body.event.user + '>'
+    msg.say('ok - ' + user + ' is in')
+    //array.push(item.id);
+  }
+})
+
 slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     msg.say('already started')
-    startTeaState = false
+    //startTeaState = false
   } else {
+    teaUsers.push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
     msg.say('<!here> time for tea!!! - who wants in? ' + user + ' is')
     //msg.say('<!user> is in')
@@ -51,7 +61,7 @@ slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
     setTimeout(() => {
     msg.say('30 seconds left - any one else?')
       setTimeout(() => {
-    msg.say('time is up :)')
+    msg.say(teaUsers.length + 'teas to make ')
   }, 30000)
   }, 30000)
     //teaUsers
