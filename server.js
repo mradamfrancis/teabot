@@ -47,6 +47,10 @@ slapp.message('tea',['ambient', 'mention'], (msg) => {
     //msg.say('<@user> is in 2')
     //msg.say(user + ' is i')
     startTeaState = true
+    
+    setTimeout(() => {
+    msg.say('I "did it"')
+  }, 3000)
     //teaUsers
   }
   })
