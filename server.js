@@ -49,8 +49,8 @@ slapp.message('tea',['ambient', 'mention'], (msg) => {
     startTeaState = true
     
     setTimeout(() => {
-    msg.say('I "did it"')
-  }, 3000)
+    msg.say('30 seconds left - any one else?')
+  }, 30000)
     //teaUsers
   }
   })
