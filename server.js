@@ -36,7 +36,7 @@ slapp.message('help', ['mention', 'direct_message', 'ambient'], (msg) => {
   msg.say(HELP_TEXT)
 })
 
-slapp.message('^(me|yes|y)$',['ambient', 'mention'], (msg) => {
+slapp.message('^(me|yes|y|ye|yeah)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     teaUsers.push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
@@ -45,7 +45,7 @@ slapp.message('^(me|yes|y)$',['ambient', 'mention'], (msg) => {
   }
 })
 
-slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
+slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     msg.say('already started')
     //startTeaState = false
@@ -66,9 +66,14 @@ slapp.message('^(tea|t|🍵)$',['ambient', 'mention'], (msg) => {
         if (teaUsers.length != 0) {
           var teaMakerId = teaUsers[Math.floor(Math.random()*teaUsers.length)]
           var teaMaker = '<@' + teaMakerId + '>'
-          if (teaUsers.length > 1) {
+          // remove duplicates from array
+          var uniqueNames = [];
+          $.each(teaUsers, function(i, el) {
+            if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+          });
+          if (uniqueNames.length > 1) {
             var listOfDrinkers = ''
-            teaUsers.forEach(function(element) {
+            uniqueNames.forEach(function(element) {
               if (element != teaMakerId) {
                 listOfDrinkers = listOfDrinkers + '<@' + element + '> '
               }
