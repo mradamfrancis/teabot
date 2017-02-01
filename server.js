@@ -68,9 +68,17 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
           var teaMaker = '<@' + teaMakerId + '>'
           // remove duplicates from array
           var uniqueNames = [];
-          $.each(teaUsers, function(i, el) {
-            if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
-          });
+          teaUsers.forEach(function(element) {
+            var foundInUnique = false
+            uniqueNames.forEach(function(element2) {
+              if (element == element2) {
+                foundInUnique = true
+              }
+            })
+            if (foundInUnique == false) {
+              uniqueNames.push(element)
+            }
+          })
           if (uniqueNames.length > 1) {
             var listOfDrinkers = ''
             uniqueNames.forEach(function(element) {
