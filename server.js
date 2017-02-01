@@ -90,7 +90,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
               // making it for themselves
               msg.say(teaMaker + ' you\'re making tea for yourself')
             } else {
-              msg.say(teaMaker + ' you\'re making tea for ' + teaUsers.length + ' people: ' + listOfDrinkers)
+              msg.say(teaMaker + ' you\'re making tea for ' + uniqueNames.length + ' people: ' + listOfDrinkers + ' and yourself')
             }
           } else {
             msg.say(teaMaker + ' you\'re making tea for yourself')
