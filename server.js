@@ -45,6 +45,11 @@ slapp.message('^(me|yes|y|ye|yeah)$',['ambient', 'mention'], (msg) => {
   }
 })
 
+slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
+    //msg.body.event.user
+
+})
+
 slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     msg.say('already started')
