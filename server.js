@@ -4,6 +4,10 @@ const express = require('express')
 const Slapp = require('slapp')
 const ConvoStore = require('slapp-convo-beepboop')
 const Context = require('slapp-context-beepboop')
+const redis = require("redis");
+const client = redis.createClient({
+  url: 'redis://jordanlapointe:42d168c1768236f5665321416a4a2ee3@50.30.35.9:3349/'
+});
 
 // use `PORT` env var on Beep Boop - default to 3000 locally
 var port = process.env.PORT || 3000
@@ -43,6 +47,10 @@ slapp.message('^(me|yes|y|ye|yeah)$',['ambient', 'mention'], (msg) => {
     msg.say('ok - ' + user + ' is in')
     //array.push(item.id);
   }
+})
+
+slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
+    client.set(msg.body.event.user, msg.body.event.text.substring(0, msg.body.event.text.indexOf("set")));
 })
 
 slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
@@ -95,6 +103,13 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
           } else {
             msg.say(teaMaker + ' you\'re making tea for yourself')
           }
+          uniqueNames.forEach(function(name) {
+            client.get(name, function (err, reply) {
+                if (reply) {
+                  msg.say(name + ' - ' + reply.toString());
+                }
+            });
+          });
         }
   }, 60000)
   }, 60000)
