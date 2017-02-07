@@ -60,7 +60,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     startTeaState = true
     
     setTimeout(() => {
-    msg.say('30 seconds left - any one else?')
+    msg.say('1 minute left - any one else?')
       setTimeout(() => {
         startTeaState = false
         if (teaUsers.length != 0) {
@@ -96,8 +96,8 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
             msg.say(teaMaker + ' you\'re making tea for yourself')
           }
         }
-  }, 30000)
-  }, 30000)
+  }, 60000)
+  }, 60000)
     //teaUsers
   }
   })
