@@ -96,12 +96,12 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
             })
             if (listOfDrinkers == '') {
               // making it for themselves
-              msg.say(teaMaker + ' you\'re making tea for yourself')
+              msg.say(teaMaker + ' you\'re making tea for yourself :partyparrot:')
             } else {
-              msg.say(teaMaker + ' you\'re making tea for ' + uniqueNames.length + ' people: ' + listOfDrinkers + 'and yourself')
+              msg.say(teaMaker + ' you\'re making tea for ' + uniqueNames.length + ' people: ' + listOfDrinkers + 'and yourself :partyparrot:')
             }
           } else {
-            msg.say(teaMaker + ' you\'re making tea for yourself')
+            msg.say(teaMaker + ' you\'re making tea for yourself :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
             client.get(name, function (err, reply) {
