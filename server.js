@@ -40,7 +40,7 @@ slapp.message('help', ['mention', 'direct_message', 'ambient'], (msg) => {
   msg.say(HELP_TEXT)
 })
 
-slapp.message('^(me|yes|y|ye|yeah)$',['ambient', 'mention'], (msg) => {
+slapp.message('^(me|yes|y|ye|yeah|yea boi)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     teaUsers.push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
