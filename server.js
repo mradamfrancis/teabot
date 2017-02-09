@@ -44,7 +44,7 @@ slapp.message('^(me|yes|y|ye|yeah|yea boi)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     teaUsers.push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
-    msg.say('ok - ' + user + ' is in')
+    msg.say('ok - ' + user + ' is in :new_moon_with_face: ')
     //array.push(item.id);
   }
 })
