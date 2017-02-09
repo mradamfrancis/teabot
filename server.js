@@ -27,7 +27,7 @@ I will respond to the following messages:
 \`help\` - to see this message.
 \`hi\` - to demonstrate a conversation that tracks state.
 \`thanks\` - to demonstrate a simple response.
-\`<type-any-other-text>\` - to demonstrate a random emoticon response, some of the time :wink:.
+\`<type-any-other-text>\` - to demonstrate a random emoticon response, some of the time :new_moon_with_face:.
 \`attachment\` - to see a Slack attachment message.
 `
 
