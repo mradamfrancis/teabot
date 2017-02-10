@@ -19,6 +19,7 @@ var slapp = Slapp({
   context: Context()
 })
 
+var rateLimitedstate = false
 var startTeaState = false
 var teaUsers = []
 
@@ -41,8 +42,8 @@ slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
 })
 
 // let channel = msg.body.event.item.channel
-slapp.message('xx',['ambient', 'mention'], (msg) => {
-  let channel = msg.body.event.channel
+slapp.message('^(test)$',['ambient', 'mention'], (msg) => {
+  let channel = msg.body.event.item.channel
   msg.say('channel ' + channel )
 })
 
@@ -63,6 +64,12 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     msg.say('already started')
     //startTeaState = false
+  }
+  if (ratelimitedState) {
+      msg.say('We\'ve just finished a round, wait a bit!')
+
+  }
+
   } else {
     teaUsers.length = 0
     teaUsers.push(msg.body.event.user)
@@ -81,6 +88,10 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     }
       setTimeout(() => {
         startTeaState = false
+        ratelimitedState = true
+        setTimeout(() => {
+        ratelimitedState = false}, 120000)
+        }
         if (teaUsers.length != 0) {
           var teaMakerId = teaUsers[Math.floor(Math.random()*teaUsers.length)]
           var teaMaker = '<@' + teaMakerId + '>'
