@@ -40,6 +40,11 @@ slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
   msg.say('yuck! get out <@' + msg.body.event.user + '>')
 })
 
+// let channel = msg.body.event.item.channel
+slapp.message('^(test)$',['ambient', 'mention'], (msg) => {
+  let channel = msg.body.event.item.channel
+  msg.say('channel ' + channel )
+})
 
 slapp.message('^(me|yes|y|ye|yeah|yea boi|oh yes)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
