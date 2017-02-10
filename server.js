@@ -96,7 +96,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
           teaUsers.forEach(function(element) {
             var foundInUnique = false
             uniqueNames.forEach(function(element2) {
-              if (element == element2) 
+              if (element == element2) {
                 foundInUnique = true
               }
             })
