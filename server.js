@@ -65,7 +65,8 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
       msg.say('We\'ve just finished a round, wait a bit!')
   }
   else {
-    teaUsers[channel].length = 0
+    teaUsers[channel] = []
+    //teaUsers[channel].length = 0
     teaUsers[channel].push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
     msg.say('<!here> time for tea!!! - who wants in? ' + user + ' is')
