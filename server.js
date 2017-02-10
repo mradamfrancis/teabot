@@ -19,9 +19,9 @@ var slapp = Slapp({
   context: Context()
 })
 
-var rateLimitedState = false
-var startTeaState = false
-var teaUsers = []
+var rateLimitedState = {}
+var startTeaState = {}
+var teaUsers = {}
 
 var HELP_TEXT = `
 I will respond to the following messages:
@@ -45,8 +45,8 @@ slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
 
 
 slapp.message('^(me|yes|y|ye|yeah|yea boi|oh yes)$',['ambient', 'mention'], (msg) => {
-  if (startTeaState) {
-    teaUsers.push(msg.body.event.user)
+  if (startTeaState[channel]) {
+    teaUsers[channel].push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
     msg.say('ok - ' + user + ' is in :new_moon_with_face: ')
     //array.push(item.id);
@@ -58,22 +58,22 @@ slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
 })
 
 slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
-  if (startTeaState) {
+  if (startTeaState[channel]) {
     msg.say('already started')
     //startTeaState = false
-  } else if (rateLimitedState) {
+  } else if (rateLimitedState[channel]) {
       msg.say('We\'ve just finished a round, wait a bit!')
-  } 
+  }
   else {
-    teaUsers.length = 0
-    teaUsers.push(msg.body.event.user)
+    teaUsers[channel].length = 0
+    teaUsers[channel].push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
     msg.say('<!here> time for tea!!! - who wants in? ' + user + ' is')
     //msg.say('<!user> is in')
     //msg.say('<@user> is in 2')
     //msg.say(user + ' is i')
-    startTeaState = true
-    
+    startTeaState[channel] = true
+
     setTimeout(() => {
     msg.say('1 minute left - anyone else? :redsiren:')
     var randomHaroun = Math.floor((Math.random() * 10) + 1)
@@ -81,18 +81,18 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
       msg.say('please be Haroun, please be Haroun, please be Haroun')
     }
       setTimeout(() => {
-        startTeaState = false
-        rateLimitedState = true
+        startTeaState[channel] = false
+        rateLimitedState[channel] = true
         setTimeout(() => {
-        rateLimitedState = false
+        rateLimitedState[channel] = false
       }, 120000)
-        
-        if (teaUsers.length != 0) {
-          var teaMakerId = teaUsers[Math.floor(Math.random()*teaUsers.length)]
+
+        if (teaUsers[channel].length != 0) {
+          var teaMakerId = teaUsers[channel][Math.floor(Math.random()*teaUsers[channel].length)]
           var teaMaker = '<@' + teaMakerId + '>'
           // remove duplicates from array
           var uniqueNames = [];
-          teaUsers.forEach(function(element) {
+          teaUsers[channel].forEach(function(element) {
             var foundInUnique = false
             uniqueNames.forEach(function(element2) {
               if (element == element2) {
