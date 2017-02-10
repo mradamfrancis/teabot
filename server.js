@@ -83,9 +83,9 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     }
       setTimeout(() => {
         startTeaState = false
-        ratelimitedState = true
+        rateLimitedState = true
         setTimeout(() => {
-        ratelimitedState = false
+        rateLimitedState = false
       }, 120000)
         
         if (teaUsers.length != 0) {
