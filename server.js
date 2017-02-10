@@ -41,7 +41,7 @@ slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
 })
 
 
-slapp.message('^(me|yes|y|ye|yeah|yea boi)$',['ambient', 'mention'], (msg) => {
+slapp.message('^(me|yes|y|ye|yeah|yea boi|oh yes)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
     teaUsers.push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
