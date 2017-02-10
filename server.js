@@ -62,7 +62,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     msg.say('already started')
     //startTeaState = false
   }
-  if (ratelimitedState) {
+  if (rateLimitedstate) {
       msg.say('We\'ve just finished a round, wait a bit!')
   } 
   else {
