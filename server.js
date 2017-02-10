@@ -44,6 +44,7 @@ slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
 // let channel = msg.body.event.item.channel
 
 slapp.message('^(me|yes|y|ye|yeah|yea boi|oh yes|tealight me)$',['ambient', 'mention'], (msg) => {
+  let channel = msg.body.event.channel
   if (startTeaState[channel]) {
     teaUsers[channel].push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
