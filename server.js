@@ -43,7 +43,6 @@ slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
 
 // let channel = msg.body.event.item.channel
 
-
 slapp.message('^(me|yes|y|ye|yeah|yea boi|oh yes|tealight me)$',['ambient', 'mention'], (msg) => {
   if (startTeaState[channel]) {
     teaUsers[channel].push(msg.body.event.user)
@@ -58,6 +57,7 @@ slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
 })
 
 slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
+  let channel = msg.body.event.channel
   if (startTeaState[channel]) {
     msg.say('already started')
     //startTeaState = false
