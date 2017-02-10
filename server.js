@@ -42,7 +42,7 @@ slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
 
 // let channel = msg.body.event.item.channel
 slapp.message('xx',['ambient', 'mention'], (msg) => {
-  let channel = msg.body.event.item.channel
+  let channel = msg.body.event.channel
   msg.say('channel ' + channel )
 })
 
