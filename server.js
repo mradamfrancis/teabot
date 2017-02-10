@@ -19,7 +19,7 @@ var slapp = Slapp({
   context: Context()
 })
 
-var rateLimitedstate = false
+var rateLimitedState = false
 var startTeaState = false
 var teaUsers = []
 
@@ -62,7 +62,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     msg.say('already started')
     //startTeaState = false
   }
-  if (rateLimitedstate) {
+  if (rateLimitedState) {
       msg.say('We\'ve just finished a round, wait a bit!')
   } 
   else {
