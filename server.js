@@ -64,10 +64,8 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
   }
   if (ratelimitedState) {
       msg.say('We\'ve just finished a round, wait a bit!')
-
-  }
-
-  } else {
+  } 
+  else {
     teaUsers.length = 0
     teaUsers.push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
