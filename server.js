@@ -85,8 +85,9 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
         startTeaState = false
         ratelimitedState = true
         setTimeout(() => {
-        ratelimitedState = false}, 120000)
-        }
+        ratelimitedState = false
+      }, 120000)
+        
         if (teaUsers.length != 0) {
           var teaMakerId = teaUsers[Math.floor(Math.random()*teaUsers.length)]
           var teaMaker = '<@' + teaMakerId + '>'
@@ -95,7 +96,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
           teaUsers.forEach(function(element) {
             var foundInUnique = false
             uniqueNames.forEach(function(element2) {
-              if (element == element2) {
+              if (element == element2) 
                 foundInUnique = true
               }
             })
