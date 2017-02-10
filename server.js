@@ -36,9 +36,10 @@ I will respond to the following messages:
 //*********************************************
 
 // response to the user typing "help"
-slapp.message('help', ['mention', 'direct_message', 'ambient'], (msg) => {
-  msg.say(HELP_TEXT)
+slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
+  msg.say('yuck! get out <@' + msg.body.event.user + '>')
 })
+
 
 slapp.message('^(me|yes|y|ye|yeah|yea boi)$',['ambient', 'mention'], (msg) => {
   if (startTeaState) {
@@ -69,6 +70,10 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     
     setTimeout(() => {
     msg.say('1 minute left - anyone else? :redsiren:')
+    var randomHaroun = Math.floor((Math.random() * 10) + 1)
+    if (randomHaroun > 6) {
+      msg.say('please be Haroun, please be Haroun, please be Haroun')
+    }
       setTimeout(() => {
         startTeaState = false
         if (teaUsers.length != 0) {
