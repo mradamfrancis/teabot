@@ -37,9 +37,86 @@ I will respond to the following messages:
 //*********************************************
 
 // response to the user typing "help"
-slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
+/*slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
   msg.say('yuck! get out <@' + msg.body.event.user + '>')
-})
+})*/
+slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
+  let channel = msg.body.event.channel
+  if (startTeaState[channel]) {
+    msg.say('Already started')
+    //startTeaState = false
+  } else if (rateLimitedState[channel]) {
+      msg.say('We\'ve just finished a round, wait a bit!')
+  }
+  else {
+    teaUsers[channel] = []
+    teaUsers[channel].push(msg.body.event.user)
+    var user = '<@' + msg.body.event.user + '>'
+    msg.say('<!here> time for coffee!!! - who wants in? ' + user + ' is')
+    //msg.say('<!user> is in')
+    //msg.say('<@user> is in 2')
+    //msg.say(user + ' is i')
+    startTeaState[channel] = true
+
+    setTimeout(() => {
+    msg.say('1 minute left - anyone else? :redsiren:')
+    var randomHaroun = Math.floor((Math.random() * 10) + 1)
+    if (randomHaroun > 8) {
+      msg.say('please be Haroun, please be Haroun, please be Haroun')
+    }
+      setTimeout(() => {
+        startTeaState[channel] = false
+        rateLimitedState[channel] = true
+        setTimeout(() => {
+        rateLimitedState[channel] = false
+      }, 120000)
+
+        if (teaUsers[channel].length != 0) {
+          var teaMakerId = teaUsers[channel][Math.floor(Math.random()*teaUsers[channel].length)]
+          var teaMaker = '<@' + teaMakerId + '>'
+          // remove duplicates from array
+          var uniqueNames = [];
+          teaUsers[channel].forEach(function(element) {
+            var foundInUnique = false
+            uniqueNames.forEach(function(element2) {
+              if (element == element2) {
+                foundInUnique = true
+              }
+            })
+            if (foundInUnique == false) {
+              uniqueNames.push(element)
+            }
+          })
+          if (uniqueNames.length > 1) {
+            var listOfDrinkers = ''
+            uniqueNames.forEach(function(element) {
+              if (element != teaMakerId) {
+                listOfDrinkers = listOfDrinkers + '<@' + element + '> '
+              }
+            })
+            if (listOfDrinkers == '') {
+              // making it for themselves
+              msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
+            } else {
+              msg.say(teaMaker + ' you\'re making coffee for ' + uniqueNames.length + ' people: ' + listOfDrinkers + 'and yourself :partyparrot:')
+            }
+          } else {
+            msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
+          }
+          uniqueNames.forEach(function(name) {
+            client.get(name, function (err, reply) {
+                if (reply) {
+                  msg.say(name + ' - ' + reply.toString());
+                }
+            });
+          });
+        }
+  }, 60000)
+  }, 60000)
+    //teaUsers
+  }
+  })
+
 
 // let channel = msg.body.event.item.channel
 
