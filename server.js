@@ -103,9 +103,13 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
           } else {
             msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
           }
+          console.log('saying prefs');
           uniqueNames.forEach(function(name) {
+            console.log('saying prefs for: ', name);
             client.get(name, function (err, reply) {
+                console.log('nothing in db for: ', name);
                 if (reply) {
+                  console.log('Pref in db for: ', name, reply);
                   msg.say(name + ' - ' + reply.toString());
                 }
             });
@@ -131,7 +135,9 @@ slapp.message('^(me|yes|y|ye|yeah|yea boi|oh yes|tealight me|ok)$',['ambient', '
 })
 
 slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
+    console.log('setting prefs for ', msg.body.event.user, ' prefs: ', msg.body.event.text.substring(0, msg.body.event.text.indexOf("set")));
     client.set(msg.body.event.user, msg.body.event.text.substring(0, msg.body.event.text.indexOf("set")));
+    console.log('preference accepted for ', msg.body.event.user);
 })
 
 slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
