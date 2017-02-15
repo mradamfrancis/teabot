@@ -61,8 +61,8 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
     setTimeout(() => {
     msg.say('1 minute left - anyone else? :redsiren:')
     var randomHaroun = Math.floor((Math.random() * 10) + 1)
-    if (randomHaroun > 8) {
-      msg.say('please be Haroun, please be Haroun, please be Haroun')
+    if (randomHaroun > 5) {
+      msg.say('Lucy! Lucy! Lucy!')
     }
       setTimeout(() => {
         startTeaState[channel] = false
