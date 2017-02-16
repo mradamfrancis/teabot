@@ -104,7 +104,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
             msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
-            client.get('pref-coffeetime-' + name, function (err, reply) {
+            client.get('pref-' + channel + '-' + name, function (err, reply) {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
                   console.log(`Pref in db for: `, name, reply);
@@ -134,8 +134,8 @@ slapp.message('^(me|yes|y|ye|yeah|yea boi|oh yes|tealight me|ok)$',['ambient', '
 })
 
 slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
-    console.log(`setting prefs for `, msg.body.event.user, ` in channel: `, msg.body.event.item.channel, ` prefs: `, msg.body.event.text.substring(3, msg.body.event.text.length));
-    client.set('pref-' + msg.body.event.item.channel + '-' + msg.body.event.user, msg.body.event.text.substring(msg.body.event.text.substring(3, msg.body.event.text.length)));
+    console.log(`setting prefs for `, msg.body.event.user, ` in channel: `, msg.body.event.channel, ` prefs: `, msg.body.event.text.substring(3, msg.body.event.text.length));
+    client.set('pref-' + msg.body.event.channel + '-' + msg.body.event.user, msg.body.event.text.substring(msg.body.event.text.substring(3, msg.body.event.text.length)));
     console.log(`preference accepted for `, msg.body.event.user);
     msg.say('Awesome! - your preference has been saved!');
 })
@@ -205,7 +205,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
             msg.say(teaMaker + ' you\'re making tea for yourself :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
-            client.get('pref-teatime-' + name, function (err, reply) {
+            client.get('pref-' + channel + '-' + name, function (err, reply) {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
                   console.log(`Pref in db for: `, name, reply);
