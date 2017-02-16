@@ -124,9 +124,10 @@ slapp.message('^(me|yes|y|ye|yeah|yea boi|oh yes|tealight me|ok)$',['ambient', '
 })
 
 slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
-    console.log(`setting prefs for `, msg.body.event.user, ` prefs: `, msg.body.event.text.substring(0, msg.body.event.text.indexOf("set")));
-    client.set(msg.body.event.user, msg.body.event.text.substring(0, msg.body.event.text.indexOf("set")));
+    console.log(`setting prefs for `, msg.body.event.user, ` prefs: `, msg.body.event.text.substring(3, msg.body.event.text.length));
+    client.set(msg.body.event.user, msg.body.event.text.substring(msg.body.event.text.substring(3, msg.body.event.text.length)));
     console.log(`preference accepted for `, msg.body.event.user);
+    msg.say('Awesome! - your preference has been saved!');
 })
 
 slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
