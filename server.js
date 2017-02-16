@@ -99,16 +99,6 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
               msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
             } else {
               msg.say(teaMaker + ' you\'re making coffee for ' + uniqueNames.length + ' people: ' + listOfDrinkers + 'and yourself :partyparrot:')
-              console.log(`saying prefs`);
-              uniqueNames.forEach(function(name) {
-                console.log(`saying prefs for: `, name);
-                client.get(name, function (err, reply) {
-                    console.log(`nothing in db for: `, name);
-                    if (reply) {
-                      console.log(`Pref in db for: `, name, reply);
-                      msg.say(name + ' - ' + reply.toString());
-                    }
-                });
           });
             }
           } else {
@@ -204,13 +194,16 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
           } else {
             msg.say(teaMaker + ' you\'re making tea for yourself :partyparrot:')
           }
-          uniqueNames.forEach(function(name) {
-            client.get(name, function (err, reply) {
-                if (reply) {
-                  msg.say(name + ' - ' + reply.toString());
-                }
-            });
-          });
+          console.log(`saying prefs`);
+              uniqueNames.forEach(function(name) {
+                console.log(`saying prefs for: `, name);
+                client.get(name, function (err, reply) {
+                    console.log(`nothing in db for: `, name);
+                    if (reply) {
+                      console.log(`Pref in db for: `, name, reply);
+                      msg.say(name + ' - ' + reply.toString());
+                    }
+                });
         }
   }, 60000)
   }, 60000)
