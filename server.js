@@ -201,7 +201,8 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
                   console.log(`Pref in db for: `, name, reply);
-                  msg.say(name + ' - ' + reply.toString());
+                  var user = '<' + name + '>'
+                  msg.say(user + ' - ' + reply.toString());
                 }
             });
           });
