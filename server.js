@@ -109,7 +109,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
                 if (reply) {
                   console.log(`Pref in db for: `, name, reply);
                   var user = '<@' + name + '>'
-                  msg.say(user + ' - ' + reply.toString());
+                  msg.say(user + ' - ' + reply.toString().replace('set', ''));
                 }
             });
           });
@@ -210,7 +210,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
                 if (reply) {
                   console.log(`Pref in db for: `, name, reply);
                   var user = '<@' + name + '>'
-                  msg.say(user + ' - ' + reply.toString());
+                  msg.say(user + ' - ' + reply.toString().replace('set', ''));
                 }
             });
           });
