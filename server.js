@@ -24,7 +24,6 @@ var startTeaState = {}
 var testState = {}
 
 var teaUsers = {}
-var countdown = 0
 var HELP_TEXT = `
 I will respond to the following messages:
 \`help\` - to see this message.
