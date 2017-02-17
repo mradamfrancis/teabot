@@ -56,9 +56,11 @@ slapp.message('^(test off)$',['ambient', 'mention'], (msg) => {
 slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
   if testState[channel] {
-    let countdown = 10000
+    let countdown = 5000
     }
-  else countdown = 60000
+  else  {
+    let countdown = 60000
+    }
   if (startTeaState[channel]) {
     msg.say('Already started')
     //startTeaState = false
