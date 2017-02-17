@@ -22,7 +22,7 @@ var slapp = Slapp({
 var rateLimitedState = {}
 var startTeaState = {}
 var teaUsers = {}
-var testState = {}
+
 var HELP_TEXT = `
 I will respond to the following messages:
 \`help\` - to see this message.
@@ -40,29 +40,8 @@ I will respond to the following messages:
 /*slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
   msg.say('yuck! get out <@' + msg.body.event.user + '>')
 })*/
-
-slapp.message('^(test on)$',['ambient', 'mention'], (msg) => {
-  let channel = msg.body.event.channel
-  testState[channel] = true
-  msg.say('Testing mode on!')
-})
-              
-slapp.message('^(test off)$',['ambient', 'mention'], (msg) => {
-  let channel = msg.body.event.channel
-  testState[channel] = false
-  msg.say('Testing mode off!')
-})
-
-
 slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
-    if (testState[channel]) {
-    countdown = 5000
-    }
-  else  {
-    countdown = 60000
-    }
-
   if (startTeaState[channel]) {
     msg.say('Already started')
     //startTeaState = false
@@ -90,7 +69,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
         rateLimitedState[channel] = true
         setTimeout(() => {
         rateLimitedState[channel] = false
-      }, 2 * countdown)
+      }, 120000)
 
         if (teaUsers[channel].length != 0) {
           var teaMakerId = teaUsers[channel][Math.floor(Math.random()*teaUsers[channel].length)]
@@ -135,8 +114,8 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
             });
           });
         }
-  }, countdown)
-  }, countdown)
+  }, 60000)
+  }, 60000)
     //teaUsers
   }
   })
