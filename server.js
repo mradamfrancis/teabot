@@ -56,7 +56,7 @@ slapp.message('^(test off)$',['ambient', 'mention'], (msg) => {
 
 slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
-    if testState[channel] {
+    if (testState[channel]) {
     countdown = 5000
     }
   else  {
