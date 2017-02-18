@@ -22,6 +22,7 @@ var slapp = Slapp({
 var rateLimitedState = {}
 var startTeaState = {}
 var teaUsers = {}
+var testState = {}
 
 var HELP_TEXT = `
 I will respond to the following messages:
@@ -40,6 +41,21 @@ I will respond to the following messages:
 /*slapp.message('coffee', ['mention', 'direct_message', 'ambient'], (msg) => {
   msg.say('yuck! get out <@' + msg.body.event.user + '>')
 })*/
+
+slapp.message('^(test on)$',['ambient', 'mention'], (msg) => {
+  let channel = msg.body.event.channel
+  testState[channel] = true
+  msg.say('Testing mode on!')
+ }
+              
+slapp.message('^(test off)$',['ambient', 'mention'], (msg) => {
+  let channel = msg.body.event.channel
+  testState[channel] = false
+  msg.say('Testing mode off!')
+ }
+
+
+
 slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
   if (startTeaState[channel]) {
