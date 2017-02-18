@@ -46,13 +46,13 @@ slapp.message('^(test on)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
   testState[channel] = true
   msg.say('Testing mode on!')
- }
+ })
               
 slapp.message('^(test off)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
   testState[channel] = false
   msg.say('Testing mode off!')
- }
+ })
 
 
 
