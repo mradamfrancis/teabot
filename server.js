@@ -123,6 +123,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
             msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
+            client.incr('drinkcount-' + channel + '-' + name)
             client.get('pref-' + channel + '-' + name, function (err, reply) {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
