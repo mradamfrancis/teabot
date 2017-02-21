@@ -139,7 +139,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
 
 // let channel = msg.body.event.item.channel
 
-slapp.message('^(me|yes|yes!|y|ye|yeah|yea boi|oh yes|tealight me|ok)$',['ambient', 'mention'], (msg) => {
+slapp.message('^(me|yes|yes!|y|ye|yeah|yes please|yea boi|oh yes|tealight me|ok)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
   if (startTeaState[channel]) {
     teaUsers[channel].push(msg.body.event.user)
