@@ -115,12 +115,12 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
             })
             if (listOfDrinkers == '') {
               // making it for themselves
-              msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
+              msg.say(teaMaker + ' you\'re making coffee for yourself, you loser :partyparrot:')
             } else {
               msg.say(teaMaker + ' you\'re making coffee for ' + uniqueNames.length + ' people: ' + listOfDrinkers + 'and yourself :partyparrot:')
             }
           } else {
-            msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
+            msg.say(teaMaker + ' you\'re making coffee for yourself, you loser :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
             client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
@@ -221,12 +221,12 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
             })
             if (listOfDrinkers == '') {
               // making it for themselves
-              msg.say(teaMaker + ' you\'re making tea for yourself :partyparrot:')
+              msg.say(teaMaker + ' you\'re making tea for yourself, you loser :partyparrot:')
             } else {
               msg.say(teaMaker + ' you\'re making tea for ' + uniqueNames.length + ' people: ' + listOfDrinkers + 'and yourself :partyparrot:')
             }
           } else {
-            msg.say(teaMaker + ' you\'re making tea for yourself :partyparrot:')
+            msg.say(teaMaker + ' you\'re making tea for yourself, you loser :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
             client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
