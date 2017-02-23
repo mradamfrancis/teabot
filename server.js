@@ -69,7 +69,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
     teaUsers[channel].push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
     msg.say('<!here> time for coffee!!! - who wants in? ' + user + ' is')
-    client.incr('startcount-' + msg.body.event.channel + '-' + msg.body.event.user)
+    client.incr('startcount-' + msg.body.event.channel + '-' + msg.body.event.user, function(err, reply) { console.log(reply); });
     //msg.say('<!user> is in')
     //msg.say('<@user> is in 2')
     //msg.say(user + ' is i')
@@ -91,7 +91,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
         if (teaUsers[channel].length != 0) {
           var teaMakerId = teaUsers[channel][Math.floor(Math.random()*teaUsers[channel].length)]
           var teaMaker = '<@' + teaMakerId + '>'
-          client.incr('makecount-' + channel + '-' + teaMakerId)
+          client.incr('makecount-' + channel + '-' + teaMakerId, function(err, reply) { console.log(reply); });
 
           // remove duplicates from array
           var uniqueNames = [];
@@ -123,7 +123,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
             msg.say(teaMaker + ' you\'re making coffee for yourself :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
-            client.incr('drinkcount-' + channel + '-' + name)
+            client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
             client.get('pref-' + channel + '-' + name, function (err, reply) {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
@@ -174,7 +174,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     teaUsers[channel].push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
     msg.say('<!here> time for tea!!! - who wants in? ' + user + ' is')
-    client.incr('startcount-' + msg.body.event.channel + '-' + msg.body.event.user)
+    client.incr('startcount-' + msg.body.event.channel + '-' + msg.body.event.user, function(err, reply) { console.log(reply); });
 
     //msg.say('<!user> is in')
     //msg.say('<@user> is in 2')
@@ -197,7 +197,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
         if (teaUsers[channel].length != 0) {
           var teaMakerId = teaUsers[channel][Math.floor(Math.random()*teaUsers[channel].length)]
           var teaMaker = '<@' + teaMakerId + '>'
-          client.incr('makecount-' + channel + '-' + teaMakerId)
+          client.incr('makecount-' + channel + '-' + teaMakerId, function(err, reply) { console.log(reply); });
 
           // remove duplicates from array
           var uniqueNames = [];
@@ -229,7 +229,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
             msg.say(teaMaker + ' you\'re making tea for yourself :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
-            client.incr('drinkcount-' + channel + '-' + name)
+            client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
             client.get('pref-' + channel + '-' + name, function (err, reply) {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
