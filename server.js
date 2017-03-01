@@ -9,7 +9,7 @@ const client = redis.createClient({
   url: 'redis://jordanlapointe:42d168c1768236f5665321416a4a2ee3@50.30.35.9:3349/'
 });
 
-// use `PORT` env var on Beep Boop - default to 3000 locally
+// use `PORT` env var on Beep Boop - default to 3000 locally 
 var port = process.env.PORT || 3000
 
 var slapp = Slapp({
