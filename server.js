@@ -153,6 +153,10 @@ slapp.message('^(me|yes|yes!|y|ye|yeah|yes please|yea boi|oh yes|tealight me|ok)
   }
 })
 
+slapp.message('^(nah m8|no)$',['ambient', 'mention'], (msg) => {
+  msg.say('no worries m8')
+})
+
 slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
     console.log(`setting prefs for `, msg.body.event.user, ` in channel: `, msg.body.event.channel, ` prefs: `, msg.body.event.text.substring(3, msg.body.event.text.length));
     client.set('pref-' + msg.body.event.channel + '-' + msg.body.event.user, msg.body.event.text.substring(msg.body.event.text.substring(3, msg.body.event.text.length)));
