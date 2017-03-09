@@ -157,6 +157,16 @@ slapp.message('^(nah m8|no)$',['ambient', 'mention'], (msg) => {
   msg.say('no worries m8')
 })
 
+slapp.message('^(stats)$',['ambient', 'mention'], (msg) => {
+    let channel = msg.body.event.channel
+    msg.say('Pulling stats :bar_chart:')
+    client.keys("*count*", function (err, replies) {
+        client.mget(replies, function(err, reply) { console.log(reply) });
+  })
+})
+
+
+
 slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
     console.log(`setting prefs for `, msg.body.event.user, ` in channel: `, msg.body.event.channel, ` prefs: `, msg.body.event.text.substring(3, msg.body.event.text.length));
     client.set('pref-' + msg.body.event.channel + '-' + msg.body.event.user, msg.body.event.text.substring(msg.body.event.text.substring(3, msg.body.event.text.length)));
