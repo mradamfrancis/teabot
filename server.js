@@ -160,7 +160,7 @@ slapp.message('^(nah m8|no)$',['ambient', 'mention'], (msg) => {
 slapp.message('^(stats)$',['ambient', 'mention'], (msg) => {
     let channel = msg.body.event.channel
     msg.say('Pulling stats :bar_chart:')
-    client.keys("*count*", function (err, replies) {
+    client.keys("*count*" + channel + "*", function (err, replies) {
         client.mget(replies, function(err, reply) { console.log(reply) });
   })
 })
