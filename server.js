@@ -53,7 +53,12 @@ slapp.message('^(test off)$',['ambient', 'mention'], (msg) => {
   msg.say('Testing mode off!')
  })
 
-
+slapp.message('^()$',['ambient', 'mention'], (msg) => {
+  if (msg.body.event.user == 'U048RNDMX') {
+    console.log('it was haroun')
+  } else {
+    console.log('it was someone else')
+ })
 
 slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
