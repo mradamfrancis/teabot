@@ -54,9 +54,10 @@ slapp.message('^(test off)$',['ambient', 'mention'], (msg) => {
  })
 
 slapp.message('^().*',['ambient', 'mention'], (msg) => {
-  //if (msg.body.event.user == 'U048RNDMX') {
-  if (msg.body.event.user == 'U04QTKU21') {
+  if (msg.body.event.user == 'U048RNDMX') {
+  //if (msg.body.event.user == 'U04QTKU21') {
     console.log('it was haroun')
+    msg.say('Haroun - you are banned from teabot. :no_entry_sign: :hick:')
   } else {
     console.log('it was someone else')
   }
