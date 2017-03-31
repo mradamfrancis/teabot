@@ -58,6 +58,7 @@ slapp.message('^()$',['ambient', 'mention'], (msg) => {
     console.log('it was haroun')
   } else {
     console.log('it was someone else')
+  }
  })
 
 slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
