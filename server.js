@@ -53,15 +53,6 @@ slapp.message('^(test off)$',['ambient', 'mention'], (msg) => {
   msg.say('Testing mode off!')
  })
 
-slapp.message('^().*',['ambient', 'mention'], (msg) => {
-  if (msg.body.event.user == 'U048RNDMX') {
-  //if (msg.body.event.user == 'U04QTKU21') {
-    console.log('it was haroun')
-    msg.say('Haroun - you are banned from teabot. :no_entry_sign: :hick:')
-  } else {
-    console.log('it was someone else')
-  }
- })
 
 slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
   let channel = msg.body.event.channel
@@ -267,6 +258,16 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     //teaUsers
   }
   })
+
+slapp.message('^().*',['ambient', 'mention'], (msg) => {
+  if (msg.body.event.user == 'U048RNDMX') {
+  //if (msg.body.event.user == 'U04QTKU21') {
+    console.log('it was haroun')
+    msg.say('Haroun - you are banned from teabot. :no_entry_sign: :hick:')
+  } else {
+    console.log('it was someone else')
+  }
+ })
 
 /*
 // "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
