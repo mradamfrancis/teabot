@@ -259,7 +259,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
   }
   })
 
-slapp.message('^().*',['ambient', 'mention'], (msg) => {
+/*slapp.message('^().*',['ambient', 'mention'], (msg) => {
   if (msg.body.event.user == 'U048RNDMX') {
   //if (msg.body.event.user == 'U04QTKU21') {
     console.log('it was haroun')
@@ -267,7 +267,7 @@ slapp.message('^().*',['ambient', 'mention'], (msg) => {
   } else {
     console.log('it was someone else')
   }
- })
+ })*/
 
 /*
 // "Conversation" flow that tracks state - kicks off when user says hi, hello or hey
