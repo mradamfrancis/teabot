@@ -198,7 +198,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     msg.say('1 minute left - anyone else? :redsiren:')
     var randomHaroun = Math.floor((Math.random() * 10) + 1)
     if (randomHaroun > 6) {
-      msg.say('please be Haroun, please be Haroun, please be Haroun')
+      msg.say('Please be Haroun, please be Haroun, please be Haroun.')
     }
       setTimeout(() => {
         startTeaState[channel] = false
