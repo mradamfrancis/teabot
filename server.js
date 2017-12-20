@@ -123,14 +123,14 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
           }
           uniqueNames.forEach(function(name) {
             //client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
-            //client.get('pref-' + channel + '-' + name, function (err, reply) {
+            /*client.get('pref-' + channel + '-' + name, function (err, reply) {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
                   console.log(`Pref in db for: `, name, reply);
                   var user = '<@' + name + '>'
                   msg.say(user + ' - ' + reply.toString().replace('set ', ''));
                 }
-            });
+            });*/
           });
         }
   }, 60000)
