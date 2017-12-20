@@ -5,9 +5,9 @@ const Slapp = require('slapp')
 const ConvoStore = require('slapp-convo-beepboop')
 const Context = require('slapp-context-beepboop')
 const redis = require("redis");
-const client = redis.createClient({
+/*const client = redis.createClient({
   url: 'redis://jordanlapointe:42d168c1768236f5665321416a4a2ee3@50.30.35.9:3349/'
-});
+});*/
 
 // use `PORT` env var on Beep Boop - default to 3000 locally 
 var port = process.env.PORT || 3000
@@ -68,7 +68,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
     teaUsers[channel].push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
     msg.say('<!here> time for coffee!!! - who wants in? ' + user + ' is')
-    client.incr('startcount-' + msg.body.event.channel + '-' + msg.body.event.user, function(err, reply) { console.log(reply); });
+    //client.incr('startcount-' + msg.body.event.channel + '-' + msg.body.event.user, function(err, reply) { console.log(reply); });
     //msg.say('<!user> is in')
     //msg.say('<@user> is in 2')
     //msg.say(user + ' is i')
@@ -90,7 +90,7 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
         if (teaUsers[channel].length != 0) {
           var teaMakerId = teaUsers[channel][Math.floor(Math.random()*teaUsers[channel].length)]
           var teaMaker = '<@' + teaMakerId + '>'
-          client.incr('makecount-' + channel + '-' + teaMakerId, function(err, reply) { console.log(reply); });
+          //client.incr('makecount-' + channel + '-' + teaMakerId, function(err, reply) { console.log(reply); });
 
           // remove duplicates from array
           var uniqueNames = [];
@@ -122,8 +122,8 @@ slapp.message('^(coffee|c|:coffee:)$',['ambient', 'mention'], (msg) => {
             msg.say(teaMaker + ' you\'re making coffee for yourself, you loser :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
-            client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
-            client.get('pref-' + channel + '-' + name, function (err, reply) {
+            //client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
+            //client.get('pref-' + channel + '-' + name, function (err, reply) {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
                   console.log(`Pref in db for: `, name, reply);
@@ -159,16 +159,16 @@ slapp.message('^(nah m8|no)$',['ambient', 'mention'], (msg) => {
 slapp.message('^(stats)$',['ambient', 'mention'], (msg) => {
     let channel = msg.body.event.channel
     msg.say('Pulling stats :bar_chart:')
-    client.keys("*count*" + channel + "*", function (err, replies) {
+    /*client.keys("*count*" + channel + "*", function (err, replies) {
         client.mget(replies, function(err, reply) { console.log(reply) });
-  })
+  })*/
 })
 
 
 
 slapp.message('^(set).*',['ambient', 'mention'], (msg) => {
     console.log(`setting prefs for `, msg.body.event.user, ` in channel: `, msg.body.event.channel, ` prefs: `, msg.body.event.text.substring(3, msg.body.event.text.length));
-    client.set('pref-' + msg.body.event.channel + '-' + msg.body.event.user, msg.body.event.text.substring(msg.body.event.text.substring(3, msg.body.event.text.length)));
+    //client.set('pref-' + msg.body.event.channel + '-' + msg.body.event.user, msg.body.event.text.substring(msg.body.event.text.substring(3, msg.body.event.text.length)));
     console.log(`preference accepted for `, msg.body.event.user);
     msg.say('Awesome! - your preference has been saved!');
 })
@@ -187,7 +187,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
     teaUsers[channel].push(msg.body.event.user)
     var user = '<@' + msg.body.event.user + '>'
     msg.say('<!here> time for tea!!! - who wants in? ' + user + ' is')
-    client.incr('startcount-' + msg.body.event.channel + '-' + msg.body.event.user, function(err, reply) { console.log(reply); });
+    //client.incr('startcount-' + msg.body.event.channel + '-' + msg.body.event.user, function(err, reply) { console.log(reply); });
 
     //msg.say('<!user> is in')
     //msg.say('<@user> is in 2')
@@ -210,7 +210,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
         if (teaUsers[channel].length != 0) {
           var teaMakerId = teaUsers[channel][Math.floor(Math.random()*teaUsers[channel].length)]
           var teaMaker = '<@' + teaMakerId + '>'
-          client.incr('makecount-' + channel + '-' + teaMakerId, function(err, reply) { console.log(reply); });
+          //client.incr('makecount-' + channel + '-' + teaMakerId, function(err, reply) { console.log(reply); });
 
           // remove duplicates from array
           var uniqueNames = [];
@@ -242,15 +242,15 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
             msg.say(teaMaker + ' you\'re making tea for yourself, you loser :partyparrot:')
           }
           uniqueNames.forEach(function(name) {
-            client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
-            client.get('pref-' + channel + '-' + name, function (err, reply) {
+            //client.incr('drinkcount-' + channel + '-' + name, function(err, reply) { console.log(reply); });
+            /*client.get('pref-' + channel + '-' + name, function (err, reply) {
                 console.log(`nothing in db for: `, name);
                 if (reply) {
                   console.log(`Pref in db for: `, name, reply);
                   var user = '<@' + name + '>'
                   msg.say(user + ' - ' + reply.toString().replace(/set /i, ''));
                 }
-            });
+            });*/
           });
         }
   }, 60000)
