@@ -209,7 +209,7 @@ slapp.message('^(tea|t|:tea:)$',['ambient', 'mention'], (msg) => {
 
         if (teaUsers[channel].length != 0) {
           var teaMakerId = teaUsers[channel][Math.floor(Math.random()*teaUsers[channel].length)]
-          teaMakerId = 'U1WLZ3BBN'
+          //teaMakerId = 'U1WLZ3BBN'
           var teaMaker = '<@' + teaMakerId + '>'
           //client.incr('makecount-' + channel + '-' + teaMakerId, function(err, reply) { console.log(reply); });
 
